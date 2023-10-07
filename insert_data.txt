@@ -1,0 +1,129 @@
+INSERT INTO customers values(10001,'Hatice','Yavuz','05557778888','hatice@gmail.com','Bursa');
+INSERT INTO customers values(10002,'Hakan','Yavas','05557778899','hakan@gmail.com','İstanbul');
+INSERT INTO customers values(10003,'Olcay','Korkut','05557668888','olcay@gmail.com','Gaziantep');
+INSERT INTO customers values(10004,'Hasan','Berber','05457778824','hasan@gmail.com','Bursa');
+INSERT INTO customers values(10005,'Tolga','Talay','05457638851','tolga@gmail.com','İstanbul');
+INSERT INTO customers values(10006,'Ece','Yilmaz','05456571568','ece@gmail.com','İstanbul');
+INSERT INTO customers values(10007,'Nalan','Erdem','05454511557','nalan@gmail.com','İstanbul');
+INSERT INTO customers values(10008,'Fuat','Öztürk','05316478568','fuat@gmail.com','Bursa');
+INSERT INTO customers values(10009,'Sunay','Ak','05326478452','sunay@gmail.com','Gaziantep');
+INSERT INTO customers values(10010,'Fatma','Uz','05335448568','fatma@gmail.com','Bursa');
+INSERT INTO customers values(10011,'Seda','Akpınar','05316478759','seda@gmail.com','Gaziantep');
+INSERT INTO customers values(10012,'Serkan','Aksel','05316478123','serkan@gmail.com','İstanbul');
+INSERT INTO customers values(10013,'Beyza','Genc','05371235568','beyza@gmail.com','Gaziantep');
+INSERT INTO customers values(10014,'Cansu','Yener','05681278568','cansu@gmail.com','Gaziantep');
+INSERT INTO customers values(10015,'Fevzi','Selvi','05314987123','fevzi@gmail.com','Bursa');
+
+select * from customers;
+
+
+INSERT INTO stores values(100,'İstanbul C-House','02121111111','chouseist@gmail.com','İstanbul')
+INSERT INTO stores values(200,'Bursa C-House','02122222222','chousebur@gmail.com','Bursa');
+INSERT INTO stores values(300,'Gazi C-House','02123333333','chouseant@gmail.com','Gaziantep');
+
+
+select * from stores;
+
+INSERT INTO staffs values(1000,'Ahmet','Yılmaz','ahmet@gmail.com','05121251412',100);
+INSERT INTO staffs values(1001,'Ferit','Under','ferit@gmail.com','05145876412',100);
+INSERT INTO staffs values(1002,'Enes','Karakaya','enes@gmail.com','05452351412',100);
+INSERT INTO staffs values(1003,'Aylin','Sonuc','aylin@gmail.com','05129965412',100);
+INSERT INTO staffs values(1004,'Kemal','Guler','kemal@gmail.com','05468871412',100);
+INSERT INTO staffs values(1005,'Eray','Guven','eray@gmail.com','05121471312',200);
+INSERT INTO staffs values(1006,'Irem','Yanmaz','irem@gmail.com','05165411412',200);
+INSERT INTO staffs values(1007,'Sema','Budak','sema@gmail.com','05136574112',200);
+INSERT INTO staffs values(1008,'Aleyna','Bilginer','aleyna@gmail.com','05197412412',200);
+INSERT INTO staffs values(1009,'Metin','Avcı','metin@gmail.com','05164278412',200);
+INSERT INTO staffs values(1010,'Bahar','Celik','bahar@gmail.com','05451351892',300);
+INSERT INTO staffs values(1011,'Emre','Sanli','emre@gmail.com','05568741260',300);
+INSERT INTO staffs values(1012,'Sami','Ertas','sami@gmail.com','05121277712',300);
+INSERT INTO staffs values(1013,'Aysu','Arık','aysu@gmail.com','05123681412',300);
+INSERT INTO staffs values(1014,'Ibrahim','Bayrak','ibra@gmail.com','05475251412',300);
+
+
+select * from staffs;
+
+INSERT INTO orders values(100000,10004,200,1006,'Delivered','04-MAY-23 08.35.30.45 AM');
+INSERT INTO orders values(100001,10007,100,1004,'Pending','05-MAY-23 09.25.30.45 AM');
+INSERT INTO orders values(100002,10012,100,1001,'Delivered','06-MAY-23 10.54.30.45 AM');
+INSERT INTO orders values(100003,10006,100,1003,'Preparing','07-JUNE-23 11.15.30.45 AM');
+INSERT INTO orders values(100004,10008,200,1007,'Pending','08-JUNE-23 12.34.30.45 AM');
+INSERT INTO orders values(100005,10015,200,1009,'Delivered','09-JUNE-23 01.24.30.45 PM');
+INSERT INTO orders values(100006,10010,200,1012,'Preparing','10-JULY-23 02.41.30.45 PM');
+INSERT INTO orders values(100007,10009,300,1013,'Pending','11-JULY-23 03.18.30.45 PM');
+INSERT INTO orders values(100008,10013,300,1014,'Preparing','12-JULY-23 04.22.30.45 PM');
+INSERT INTO orders values(100009,10014,300,1006,'Delivered','13-JULY-23 05.27.30.45 PM');
+
+
+select * from orders;
+
+INSERT INTO brands values(1,'Tchibo');
+INSERT INTO brands values(2,'Nescafe');
+INSERT INTO brands values(3,'Jacobs');
+INSERT INTO brands values(4,'Shazel');
+INSERT INTO brands values(5,'Mehmet Efendi');
+
+select * from brands;
+
+INSERT INTO categories values(10,'Hot');
+INSERT INTO categories values(11,'Ice');
+INSERT INTO categories values(12,'Milky');
+
+select * from categories;
+
+INSERT INTO products values(500,'Espresso Barista',1,10);
+INSERT INTO products values(501,'Cold Brew Haselnuss',1,11);
+INSERT INTO products values(502,'Feine Milde',1,12);
+INSERT INTO products values(503,'Gold',2,10);
+INSERT INTO products values(504,'Xpress Caramel',2,11);
+INSERT INTO products values(505,'Latte',2,12);
+INSERT INTO products values(506,'Monarch',3,10);
+INSERT INTO products values(507,'Icepresso',3,11);
+INSERT INTO products values(508,'Millicano',3,12);
+INSERT INTO products values(509,'Turkish Coffee',4,10);
+INSERT INTO products values(510,'Iced Coffee',4,11);
+INSERT INTO products values(511,'Menengiç Coffee',4,12);
+INSERT INTO products values(512,'Turkish Coffee',5,10);
+INSERT INTO products values(513,'Cold Brew',5,11);
+INSERT INTO products values(514,'Ottoman Coffee',5,12);
+
+select * from products;
+
+INSERT INTO stocks values(100,500,'50');
+INSERT INTO stocks values(100,502,'50');
+INSERT INTO stocks values(100,504,'50');
+INSERT INTO stocks values(100,506,'50');
+INSERT INTO stocks values(100,508,'50');
+INSERT INTO stocks values(100,510,'50');
+INSERT INTO stocks values(100,512,'50');
+INSERT INTO stocks values(200,514,'30');
+INSERT INTO stocks values(200,501,'30');
+INSERT INTO stocks values(200,503,'30');
+INSERT INTO stocks values(200,505,'30');
+INSERT INTO stocks values(200,507,'30');
+INSERT INTO stocks values(200,509,'30');
+INSERT INTO stocks values(200,511,'30');
+INSERT INTO stocks values(300,513,'40');
+INSERT INTO stocks values(300,505,'40');
+INSERT INTO stocks values(300,501,'40');
+INSERT INTO stocks values(300,502,'40');
+INSERT INTO stocks values(300,506,'40');
+INSERT INTO stocks values(300,508,'40');
+INSERT INTO stocks values(300,510,'40');
+
+select * from stocks;
+
+INSERT INTO order_item values(100000, 50, 514, 1, 30);
+INSERT INTO order_item values(100001, 51, 502, 2, 40);
+INSERT INTO order_item values(100002, 52, 504, 1, 25);
+INSERT INTO order_item values(100003, 53, 506, 3, 30);
+INSERT INTO order_item values(100004, 54, 501, 2, 35);
+INSERT INTO order_item values(100005, 55, 503, 1, 40);
+INSERT INTO order_item values(100006, 56, 505, 5, 120);
+INSERT INTO order_item values(100007, 57, 506, 6, 150);
+INSERT INTO order_item values(100008, 58, 508, 3, 80);
+INSERT INTO order_item values(100009, 59, 510, 4, 75);
+
+select * from order_item;
+
+

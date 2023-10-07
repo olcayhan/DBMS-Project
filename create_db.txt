@@ -1,0 +1,135 @@
+create table customers ( 
+    customer_id number not null constraint customers_pk primary key, 
+    first_name varchar2(20), 
+    last_name varchar2(20), 
+    phone varchar2(20), 
+    email varchar2(20), 
+    city varchar2(20) 
+)
+------
+create table orders ( 
+    order_id number not null constraint orders_pk primary key, 
+    customer_id number, 
+    store_id number, 
+    staff_id number, 
+    order_status varchar2(20), 
+    order_date timestamp 
+)
+------
+create table staffs ( 
+    staff_id number not null constraint staffs_pk primary key, 
+    first_name varchar2(20), 
+    last_name varchar2(20), 
+    email varchar2(20), 
+    phone varchar2(20), 
+    store_id number not null 
+)
+--------
+create table stores ( 
+    store_id number constraint stores_pk primary key, 
+    store_name varchar2(20), 
+    phone varchar2(20), 
+    email varchar2(20), 
+    city varchar2(20) 
+)
+------
+create table order_item ( 
+    order_id number not null, 
+    item_id number not null, 
+    product_id number, 
+    quantity number, 
+    price number 
+)
+-----
+create table products ( 
+    product_id number not null constraint products_pk primary key, 
+    product_name varchar2(20), 
+    brand_id number not null, 
+    category_id number not null 
+)
+--------
+create table categories ( 
+    category_id number constraint categories_pk primary key, 
+    category_name varchar2(20) 
+)
+--------
+create table stocks ( 
+    store_id number not null, 
+    product_id number not null, 
+    quantity varchar2(20) 
+)
+---------
+create table brands ( 
+    brand_id number not null constraint brands_pk primary key, 
+    brand_name varchar2(20) 
+)
+
+----------
+ALTER TABLE orders 
+ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+
+-----------
+ALTER TABLE orders 
+ADD FOREIGN KEY (staff_id) REFERENCES staffs(staff_id)
+
+---------
+ALTER TABLE orders 
+ADD FOREIGN KEY (store_id) REFERENCES stores(store_id)
+
+------
+ALTER TABLE staffs   
+ADD FOREIGN KEY (store_id) REFERENCES stores(store_id)
+
+
+------
+ALTER TABLE products   
+ADD FOREIGN KEY (category_id) REFERENCES categories(category_id)
+
+
+------
+ALTER TABLE products   
+ADD FOREIGN KEY (brand_id) REFERENCES brands(brand_id)
+
+
+
+------
+ALTER TABLE stocks   
+ADD FOREIGN KEY (product_id) REFERENCES products(product_id)
+
+
+
+------
+ALTER TABLE stocks   
+ADD FOREIGN KEY (store_id) REFERENCES stores(store_id)
+
+
+
+------
+ALTER TABLE stocks   
+ADD primary KEY (product_id,store_id)
+
+
+------
+ALTER TABLE order_item   
+ADD FOREIGN KEY (product_id) REFERENCES products(product_id)
+
+
+------
+ALTER TABLE order_item   
+ADD FOREIGN KEY (order_id) REFERENCES orders(order_id) 
+
+
+
+------
+ALTER TABLE order_item   
+ADD primary KEY (order_id,item_id)
+
+
+
+------
+ALTER TABLE orders   
+ADD FOREIGN KEY (staff_id) REFERENCES staffs(staff_id)
+
+
+
+

@@ -1,0 +1,242 @@
+1-) Belirli bir tarihte tamamlanan siparişlerin sayısını bulma:
+
+SELECT count(*) FROM orders WHERE order_date = '04-MAY-23 08.35.30.45 AM' AND order_status = 'Beklemede';
+
+
+
+
+
+2-) Bir siparişin tarihini, toplam fiyatını ve müşteri adını getirme:
+
+SELECT o.order_date, oi.price, c.first_name, c.last_name
+FROM orders o 
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_item oi ON o.order_id = oi.order_id
+WHERE o.order_id = 164723;
+
+
+
+
+
+
+
+3-) Bir personelin adı, soyadı, email ve telefon numarasını getirme:
+
+SELECT first_name, last_name, email, phone FROM staffs WHERE staff_id = '';
+
+
+
+
+
+
+
+4-) Bir müşterinin adı, soyadı, e-posta adresi ve telefon numarasını getirme:
+
+SELECT first_name, last_name, email, phone FROM customers WHERE customer_id = 1255465;
+
+
+
+
+
+
+5-) Belirli bir siparişin toplam ürün miktarını bulma:
+SELECT SUM(quantity) FROM order_item WHERE order_id = 196472;
+
+
+
+
+
+6-) Bir ürünün adını, markasını, kategorisini ve fiyatını getirme:
+
+SELECT p.product_name, p.brand_id, p.category_id, oi.price
+FROM products p
+INNER JOIN order_item oi ON p.product_id = oi.product_id
+WHERE p.product_id = 164562;
+
+
+
+
+7-) Belirli bir kategorideki ürünlerin sayısını bulma:
+SELECT COUNT(*) FROM products WHERE category_id = 164785;
+
+
+
+
+
+
+8-) Belirli bir fiyat aralığındaki ürünlerin ortalama fiyatını bulma:
+
+SELECT ROUND(AVG(oi.price)) 
+FROM order_item oi
+WHERE oi.price BETWEEN 10 AND 50;
+
+
+
+
+
+
+9-) Bir mağazanın adını, şehrini ve adresini getirme:
+SELECT store_name, city FROM stores WHERE store_id = 134586;
+
+
+
+
+
+
+
+10-) Minimum stok miktarına sahip olan ürünün adını ve stok miktarını bulma:
+
+SELECT p.product_name, s.quantity
+FROM stocks s
+INNER JOIN products p ON s.product_id = p.product_id
+WHERE s.store_id = 123456
+ORDER BY s.quantity ASC
+fetch next 1 rows only;
+
+
+
+
+
+
+
+
+11-) En fazla stok sayısına sahip olan mağazayı bulma:
+
+SELECT s.store_id, SUM(s.quantity) AS total_stock
+FROM stocks s
+GROUP BY s.store_id
+ORDER BY total_stock DESC
+fetch next 1 rows only;
+
+
+
+
+
+12-) Belirli bir kategoriye ait en pahalı ürünü bulma:
+
+SELECT p.product_name, oi.price
+FROM order_item oi
+INNER JOIN products p ON oi.product_id = p.product_id
+INNER JOIN categories c ON p.category_id = c.category_id
+WHERE c.category_name = 'Sıcak İçecekler'
+ORDER BY oi.price DESC
+fetch next 1 rows only;
+
+
+
+
+
+13-) Belirli bir tarih aralığındaki toplam sipariş sayısını bulma:
+
+SELECT COUNT(*) AS total_orders
+FROM orders
+WHERE order_date BETWEEN '01-MAY-23 08.35.30.450000 AM' AND '10-MAY-23 08.35.30.450000 AM';
+
+
+
+
+
+14-)En çok sipariş veren müşterinin adını, soyadını ve toplam sipariş sayısını bulma:
+
+SELECT c.first_name, c.last_name, COUNT(o.order_id) AS total_orders
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY c.first_name, c.last_name
+ORDER BY COUNT(o.order_id) DESC
+fetch next 1 rows only;
+
+
+
+
+
+
+
+15-)En çok ürünün adını, toplam miktarını ve gelirini bulma:
+
+SELECT p.product_name, SUM(oi.quantity) AS total_quantity, SUM(oi.price) AS total_income
+FROM order_item oi
+INNER JOIN products p ON oi.product_id = p.product_id
+GROUP BY p.product_name, oi.quantity, oi.price
+ORDER BY total_quantity DESC
+fetch next 1 rows only;
+
+
+
+
+
+
+
+
+
+16-) En düşük fiyatlı ürünün adını ve fiyatını bulma:
+
+SELECT p.product_name, oi.price
+FROM order_item oi
+INNER JOIN products p ON oi.product_id = p.product_id
+WHERE oi.price = (SELECT MIN(price) FROM order_item)
+fetch next 1 rows only;
+
+
+
+
+
+17-) Belirli bir tarih aralığındaki toplam sipariş sayısını ve toplam satış tutarını bulma:
+
+SELECT COUNT(DISTINCT o.order_id) AS total_orders, SUM(oi.price) AS total_sales
+FROM orders o
+INNER JOIN order_item oi ON o.order_id = oi.order_id
+WHERE o.order_date BETWEEN '01-MAY-23 08.35.30.450000 AM' AND '10-MAY-23 08.35.30.450000 AM';
+
+
+
+
+
+
+
+
+
+18-) Belirli bir mağazadaki tüm ürünlerin stok miktarını ve toplam değerini bulma:
+
+SELECT SUM(s.quantity) AS total_quantity, SUM(oi.price * s.quantity) AS total_value
+FROM stocks s
+INNER JOIN order_item oi ON s.product_id = oi.product_id
+WHERE s.store_id = 458621;
+
+
+
+
+
+
+
+19-) Belirli bir kategorideki en ucuz ürünün adını ve fiyatını bulma:
+
+
+SELECT p.product_name, oi.price
+FROM order_item oi
+INNER JOIN products p ON oi.product_id = p.product_id
+INNER JOIN categories c ON p.category_id = c.category_id
+WHERE c.category_name = 'Sıcak İçecekler'
+ORDER BY oi.price ASC
+fetch next 1 rows only;
+
+
+
+
+
+
+
+
+
+20-)Belirli bir müşterinin son sipariş tarihini, toplam harcamasını ve en son siparişindeki ürünleri getirme:
+SELECT o.order_date, oi.price, p.product_name
+FROM orders o
+INNER JOIN order_item oi ON o.order_id = oi.order_id
+INNER JOIN products p ON oi.product_id = p.product_id
+WHERE o.customer_id = 1255465
+GROUP BY o.order_date, oi.price, p.product_name
+ORDER BY o.order_date DESC
+fetch next 1 rows only;
+
+
+
+
